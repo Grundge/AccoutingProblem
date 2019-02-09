@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccoutingProblem", "AccoutingProblem\AccoutingProblem.csproj", "{BA1842E7-E7E4-4A9A-ADF4-B5BDC00959C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccoutingProblem.Tests", "AccoutingProblem.Tests\AccoutingProblem.Tests.csproj", "{5567ED84-45BF-421D-9842-CE83C4F9EFBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA1842E7-E7E4-4A9A-ADF4-B5BDC00959C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA1842E7-E7E4-4A9A-ADF4-B5BDC00959C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA1842E7-E7E4-4A9A-ADF4-B5BDC00959C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA1842E7-E7E4-4A9A-ADF4-B5BDC00959C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5567ED84-45BF-421D-9842-CE83C4F9EFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5567ED84-45BF-421D-9842-CE83C4F9EFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5567ED84-45BF-421D-9842-CE83C4F9EFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5567ED84-45BF-421D-9842-CE83C4F9EFBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA517C55-8CD5-4D82-88D1-AA6CAF8EC478}
+	EndGlobalSection
+EndGlobal
