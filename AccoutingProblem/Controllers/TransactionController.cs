@@ -24,7 +24,7 @@ namespace AccoutingProblem.Controllers
         }
 
         // GET: Transaction
-        public ActionResult Index(int recordId)
+        public ActionResult Transactions(int recordId)
         {
             var transactions = from t in _recordRepository.GetRecordById(recordId).Transactions
                           select t;

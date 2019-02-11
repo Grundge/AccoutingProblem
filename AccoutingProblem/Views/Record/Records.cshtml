@@ -27,7 +27,7 @@
                     @Html.DisplayFor(modelItem => record.Created)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => record.RecordId)
+                    @Html.ActionLink("Edit", "Transactions", "Transaction",new { recordId = record.RecordId}, null)
                 </td>
             </tr>
             }

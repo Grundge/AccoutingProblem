@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AccoutingProblem.Models.Transaction>
+
+@{
+    ViewBag.Title = "Transactions";
+}
+
+<h2>Transactions</h2>
+
+<div class="display-field">
+    <table class=".table">
+        <tr>
+            <th>Acount</th>
+            <th>Description</th>
+            <th>Currency Code</th>
+            <th>Amount</th>
+            <th>Error</th>
+        </tr>
+        @foreach (var transaction in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => transaction.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => transaction.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => transaction.CurrencyCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => transaction.Amount)
+            </td>
+            <td>
+                @*Html.DisplayFor(modelItem => transaction.TransactionError.ToString())*@
+            </td>
+        </tr>
+        }
+    </table>
+</div>

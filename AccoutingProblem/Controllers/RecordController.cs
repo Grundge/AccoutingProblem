@@ -114,7 +114,8 @@ namespace AccoutingProblem.Controllers
                             Account = row.Cell(1).Value.ToString(),
                             Description = row.Cell(2).Value.ToString(),
                             CurrencyCode = row.Cell(3).Value.ToString(),
-                            Amount = double.Parse(row.Cell(4).Value.ToString())
+                            Amount = double.Parse(row.Cell(4).Value.ToString()),
+                            TransactionError = TransactionError.None
                         });
                         _recordRepository.UpdateRecord(record);
                         _recordRepository.Save();
