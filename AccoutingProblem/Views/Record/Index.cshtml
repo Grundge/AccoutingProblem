@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AccoutingProblem.Models.Record>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="display-field">
+    <table>
+        <tr>
+            <th>Course Title</th>
+            <th>Grade</th>
+        </tr>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => record.RecordName)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div class="row">
+    <form action="" method="post" enctype="multipart/form-data">
+
+        <label for="file">Filename:</label>
+        <input type="file" name="file" id="file" />
+        <input type="submit" />
+    </form>
+</div>
