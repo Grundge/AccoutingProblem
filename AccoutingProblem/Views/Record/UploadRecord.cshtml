@@ -1,27 +1,10 @@
-﻿@*@model IEnumerable<AccoutingProblem.Models.Record>*@
-@model AccoutingProblem.Models.Record
+﻿@model AccoutingProblem.Models.Record
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "UploadRecord";
 }
 
-<h2>Index</h2>
-
-@*<div class="display-field">
-    <table>
-        <tr>
-            <th>Course Title</th>
-            <th>Grade</th>
-        </tr>
-        @foreach (var record in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => record.RecordName)
-                </td>
-            </tr>
-        }
-    </table>
-</div>*@
+<h2>Upload Record</h2>
 
 <div class="row">
     <form action="" method="post" enctype="multipart/form-data">
@@ -34,8 +17,10 @@
 <div class="display-field">
     <table>
         <tr>
-            <th>Course Title</th>
-            <th>Grade</th>
+            <th>Account</th>
+            <th>Description</th>
+            <th>Currency Code</th>
+            <th>Amount</th>
         </tr>
         @if (Model != null && Model.Transactions != null)
         {

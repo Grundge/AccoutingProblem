@@ -11,9 +11,9 @@ namespace AccoutingProblem.Interfaces
     {
         IEnumerable<Record> GetRecords();
         Record GetRecordById(int recordId);
-        void InsertRecord(Record record);
+        Record InsertRecord(Record record);
         void DeleteRecord(int recordId);
-        void UpdateRecord(int recordId);
+        void UpdateRecord(Record record);
         void Save();
     }
 }

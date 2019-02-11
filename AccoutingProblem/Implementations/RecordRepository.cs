@@ -2,6 +2,7 @@
 using AccoutingProblem.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -51,9 +52,9 @@ namespace AccoutingProblem.Implementations
             return _context.Records.ToList();
         }
 
-        public void InsertRecord(Record record)
+        public Record InsertRecord(Record record)
         {
-            _context.Records.Add(record);
+            return _context.Records.Add(record);
         }
 
         public void Save()
@@ -61,9 +62,9 @@ namespace AccoutingProblem.Implementations
             _context.SaveChanges();
         }
 
-        public void UpdateRecord(int recordId)
+        public void UpdateRecord(Record record)
         {
-            throw new NotImplementedException();
+            _context.Entry(record).State = EntityState.Modified;
         }
     }
 }

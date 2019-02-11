@@ -1,0 +1,35 @@
+﻿@model IEnumerable<AccoutingProblem.Models.Record>
+
+@{
+    ViewBag.Title = "Records";
+}
+
+<h2>Records</h2>
+
+<div class="display-field">
+        <table>
+            <tr>
+                <th>Record Name</th>
+                <th>Transactions</th>
+                <th>Created</th>
+                <th>Edit</th>
+            </tr>
+            @foreach (var record in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => record.RecordName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => record.Transactions.Count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => record.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => record.RecordId)
+                </td>
+            </tr>
+            }
+        </table>
+    </div>

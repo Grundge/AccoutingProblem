@@ -13,5 +13,6 @@ namespace AccoutingProblem.Models
         public string CurrencyCode { get; set; }
         public double Amount { get; set; }
         public bool IsValid { get; set; }
+        public TransactionError TransactionError { get; set; }
     }
 }

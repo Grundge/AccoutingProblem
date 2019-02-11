@@ -12,8 +12,8 @@ namespace AccoutingProblem.Models
         public string RecordName { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
-        public DateTime Deleted { get; set; }
+        public DateTime? Updated { get; set; }
+        public DateTime? Deleted { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

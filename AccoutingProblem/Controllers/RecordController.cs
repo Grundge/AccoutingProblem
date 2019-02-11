@@ -30,16 +30,21 @@ namespace AccoutingProblem.Controllers
         }
 
         // GET: Record
-        public ActionResult Index()
+        public ActionResult Records()
         {
             var records = from r in _recordRepository.GetRecords()
                           select r;
             return View(records);
         }
 
+        public ActionResult UploadRecord()
+        {
+            return View();
+        }
+
         // POST: Record file
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public ActionResult UploadRecord(HttpPostedFileBase file)
         {
 
             if (file.ContentLength > 0)
@@ -50,15 +55,17 @@ namespace AccoutingProblem.Controllers
 
                 if (Path.GetExtension(file.FileName).ToLower() == ".xlsx" || Path.GetExtension(file.FileName).ToLower() == ".xls")
                 {
-                    Thread thread = new Thread(() => LoadFile(file.InputStream));
-                    thread.Start();
+                    Record record = LoadFile(file.InputStream);
+                    return View(record);
+                    //Thread thread = new Thread(() => LoadFile(file.InputStream));
+                    //thread.Start();
                 }
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("UploadRecord");
         }
 
-        private void LoadFile(Stream file)
+        private Record LoadFile(Stream file)
         {
             try
             {
@@ -72,7 +79,7 @@ namespace AccoutingProblem.Controllers
                     catch (Exception ex)
                     {
                         ModelState.AddModelError(String.Empty, $"Check your file. {ex.Message}");
-                        return;
+                        return null;
                     }
                     IXLWorksheet WorkSheet = null;
                     try//incase if the sheet you are looking for is not found
@@ -83,25 +90,51 @@ namespace AccoutingProblem.Controllers
                     catch
                     {
                         ModelState.AddModelError(String.Empty, "Sheet1 not found!");
-                        return;
+                        return null;
                     }
                     WorkSheet.FirstRow().Delete();//if you want to remove ist row
 
+                    Record record = new Record()
+                    {
+                        Created = DateTime.Now,
+                        IsDeleted = false,
+                        RecordName = Guid.NewGuid().ToString(),
+                        Transactions = new List<Transaction>(),
+                        Deleted = null,
+                        Updated = null,
+                    };
+
+                    record = _recordRepository.InsertRecord(record);
+                    _recordRepository.Save();
+
                     foreach (var row in WorkSheet.RowsUsed())
                     {
-                        //do something here
-                        row.Cell(1).Value.ToString();//Get ist cell. 1 represent column number
-                        Debug.WriteLine(row.Cell(1).Value.ToString());
-                        Debug.WriteLine(row.Cell(2).Value.ToString());
-                        Debug.WriteLine(row.Cell(3).Value.ToString());
-                        Debug.WriteLine(row.Cell(4).Value.ToString());
+                        record.Transactions.Add(new Transaction()
+                        {
+                            Account = row.Cell(1).Value.ToString(),
+                            Description = row.Cell(2).Value.ToString(),
+                            CurrencyCode = row.Cell(3).Value.ToString(),
+                            Amount = double.Parse(row.Cell(4).Value.ToString())
+                        });
+                        _recordRepository.UpdateRecord(record);
+                        _recordRepository.Save();
+                        ////do something here
+                        //row.Cell(1).Value.ToString();//Get ist cell. 1 represent column number
+                        //Debug.WriteLine(row.Cell(1).Value.ToString());
+                        //Debug.WriteLine(row.Cell(2).Value.ToString());
+                        //Debug.WriteLine(row.Cell(3).Value.ToString());
+                        //Debug.WriteLine(row.Cell(4).Value.ToString());
                     }
-                    return;
+                    
+
+                    return record;
                 }
+                return null;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+                return null;
             }
         }
     }

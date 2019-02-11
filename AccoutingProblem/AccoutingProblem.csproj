@@ -153,6 +153,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecordController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,10 +164,15 @@
     <Compile Include="Migrations\201902102111154_InitialCreate.Designer.cs">
       <DependentUpon>201902102111154_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902112239071_UpdatedDateTime.cs" />
+    <Compile Include="Migrations\201902112239071_UpdatedDateTime.Designer.cs">
+      <DependentUpon>201902112239071_UpdatedDateTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountingContext.cs" />
     <Compile Include="Models\Record.cs" />
     <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\TransactionError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +212,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Record\Index.cshtml" />
+    <Content Include="Views\Record\UploadRecord.cshtml" />
+    <Content Include="Views\Record\Records.cshtml" />
+    <Content Include="Views\Transaction\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\records\" />
@@ -226,6 +235,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902102111154_InitialCreate.resx">
       <DependentUpon>201902102111154_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902112239071_UpdatedDateTime.resx">
+      <DependentUpon>201902112239071_UpdatedDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
