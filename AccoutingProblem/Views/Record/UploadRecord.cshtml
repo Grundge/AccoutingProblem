@@ -21,25 +21,29 @@
             <th>Description</th>
             <th>Currency Code</th>
             <th>Amount</th>
+            <th>Error</th>
         </tr>
         @if (Model != null && Model.Transactions != null)
         {
             foreach (var transaction in Model.Transactions)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => transaction.Account)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => transaction.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => transaction.CurrencyCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => transaction.Amount)
-                    </td>
-                </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => transaction.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => transaction.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => transaction.CurrencyCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => transaction.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => transaction.TransactionError)
+            </td>
+        </tr>
             }
         }
 

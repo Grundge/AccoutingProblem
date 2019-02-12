@@ -1,4 +1,5 @@
-﻿using AccoutingProblem.Implementations;
+﻿using AccoutingProblem.Extensions;
+using AccoutingProblem.Implementations;
 using AccoutingProblem.Interfaces;
 using AccoutingProblem.Models;
 using ClosedXML.Excel;
@@ -72,7 +73,7 @@ namespace AccoutingProblem.Controllers
                 if (file != null)
                 {
                     XLWorkbook Workbook;
-                    try//incase if the file is corrupt
+                    try
                     {
                         Workbook = new XLWorkbook(file);
                     }
@@ -82,7 +83,7 @@ namespace AccoutingProblem.Controllers
                         return null;
                     }
                     IXLWorksheet WorkSheet = null;
-                    try//incase if the sheet you are looking for is not found
+                    try
                     {
                         WorkSheet = Workbook.Worksheet("Sheet1");
 
@@ -92,7 +93,7 @@ namespace AccoutingProblem.Controllers
                         ModelState.AddModelError(String.Empty, "Sheet1 not found!");
                         return null;
                     }
-                    WorkSheet.FirstRow().Delete();//if you want to remove ist row
+                    WorkSheet.FirstRow().Delete();
 
                     Record record = new Record()
                     {
@@ -109,14 +110,20 @@ namespace AccoutingProblem.Controllers
 
                     foreach (var row in WorkSheet.RowsUsed())
                     {
-                        record.Transactions.Add(new Transaction()
+                        Transaction t = new Transaction()
                         {
                             Account = row.Cell(1).Value.ToString(),
                             Description = row.Cell(2).Value.ToString(),
                             CurrencyCode = row.Cell(3).Value.ToString(),
                             Amount = double.Parse(row.Cell(4).Value.ToString()),
                             TransactionError = TransactionError.None
-                        });
+                        };
+                        if (!t.CurrencyCode.IsValidIso4217())
+                        {
+                            t.TransactionError = TransactionError.InvalidIso4217;
+                        }
+                        record.Transactions.Add(t);
+                        
                         _recordRepository.UpdateRecord(record);
                         _recordRepository.Save();
                         ////do something here

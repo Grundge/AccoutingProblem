@@ -13,7 +13,7 @@ namespace AccoutingProblem.Extensions
             .Distinct()
             .OrderBy(x => x);
 
-        static IEnumerable<T> GetInvalidIso4217<T>(this IEnumerable<T> data, Func<T, bool> predicate)
+        public static IEnumerable<T> GetInvalidIso4217<T>(this IEnumerable<T> data, Func<T, bool> predicate)
         {
             
             foreach (T value in data)
@@ -23,6 +23,11 @@ namespace AccoutingProblem.Extensions
                     yield return value;
                 }
             }
+        }
+
+        public static bool IsValidIso4217(this string data)
+        {
+            return currencySymbols.Contains(data);
         }
     }
 }
