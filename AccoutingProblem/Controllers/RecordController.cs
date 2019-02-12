@@ -110,17 +110,22 @@ namespace AccoutingProblem.Controllers
 
                     foreach (var row in WorkSheet.RowsUsed())
                     {
+                        double amount = 0;
+                        bool amountParsed = double.TryParse(row.Cell(4).Value.ToString(), out amount);
                         Transaction t = new Transaction()
                         {
                             Account = row.Cell(1).Value.ToString(),
                             Description = row.Cell(2).Value.ToString(),
                             CurrencyCode = row.Cell(3).Value.ToString(),
-                            Amount = double.Parse(row.Cell(4).Value.ToString()),
+                            Amount = amount,
                             TransactionError = TransactionError.None
                         };
                         if (!t.CurrencyCode.IsValidIso4217())
                         {
                             t.TransactionError = TransactionError.InvalidIso4217;
+                        }else if (!amountParsed)
+                        {
+                            t.TransactionError = TransactionError.InvalidAmount;
                         }
                         record.Transactions.Add(t);
                         
